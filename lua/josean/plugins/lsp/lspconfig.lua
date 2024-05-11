@@ -85,6 +85,24 @@ return {
           capabilities = capabilities,
         })
       end,
+
+      ["cssls"] = function()
+        lspconfig.cssls.setup({
+          capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()), -- Adjust this if you have a specific 'capabilities' setup function
+          settings = {
+            css = {
+              validate = true,
+            },
+            less = {
+              validate = true,
+            },
+            scss = {
+              validate = true,
+            },
+          },
+        })
+      end,
+
       ["svelte"] = function()
         -- configure svelte server
         lspconfig["svelte"].setup({
@@ -134,4 +152,3 @@ return {
     })
   end,
 }
-
