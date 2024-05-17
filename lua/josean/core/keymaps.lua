@@ -24,10 +24,10 @@ keymap.set("n", "<leader>tj", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- Go to next tab with Ctrl+U
-keymap.set("n", "<C-u>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
+keymap.set("n", "<C-i>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
 
 -- Go to previous tab with Ctrl+I
-keymap.set("n", "<C-i>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
+keymap.set("n", "<C-u>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
 
 -- Run current Python file
 keymap.set("n", "<leader>pr", ':!python3 "%"<CR>', { desc = "Run current Python file" })
