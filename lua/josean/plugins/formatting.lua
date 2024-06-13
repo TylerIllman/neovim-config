@@ -21,6 +21,7 @@ return {
         liquid = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        -- rust = { "prettier" },
       },
       format_on_save = {
         lsp_fallback = true,
