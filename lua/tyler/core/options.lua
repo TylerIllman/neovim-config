@@ -40,3 +40,7 @@ opt.swapfile = false
 
 -- wrap text rows
 opt.wrap = true
+
+-- custom colours for use with lualine filename highlighting
+vim.api.nvim_set_hl(0, "lualineBold", { fg = "#FFDA7B", bg = "#112638", bold = true })
+vim.api.nvim_set_hl(0, "lualineNormal", { fg = "#c3ccdc", bg = "#112638" })

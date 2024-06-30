@@ -49,6 +49,28 @@ return {
             },
         }
 
+        -- local function custom_filename()
+        --     local path = vim.fn.expand("%:~:.") -- Gets the relative path with home replaced by ~
+        --     local filename = vim.fn.expand("%:t") -- Gets the filename with extension
+        --     if path == filename then
+        --         return "%#Bold#" .. filename .. "%#Normal#" -- Apply bold if only filename is shown
+        --     else
+        --         local path_without_filename = path:sub(1, #path - #filename)
+        --         return path_without_filename .. "%#Bold#" .. filename .. "%#Normal#"
+        --     end
+        -- end
+
+        local function custom_filename()
+            local path = vim.fn.expand("%:~:.") -- Gets the relative path with home replaced by ~
+            local filename = vim.fn.expand("%:t") -- Gets the filename with extension
+            if path == filename then
+                return "%#lualineBold#" .. filename .. "%#lualineNormal#" -- Apply bold if only filename is shown, this can be changed in options.lua
+            else
+                local path_without_filename = path:sub(1, #path - #filename)
+                return path_without_filename .. "%#lualineBold#" .. filename .. "%#lualineNormal#"
+            end
+        end
+
         -- configure lualine with modified theme
         lualine.setup({
             options = {
@@ -57,10 +79,10 @@ return {
             sections = {
                 lualine_c = {
                     {
-                        "filename",
+                        custom_filename,
                         file_status = true, -- Displays file status (readonly status, modified status)
-                        newfile_status = false, -- Display new file status (new file means no write after created)
-                        path = 1, -- 1: Relative path
+                        -- newfile_status = false, -- Display new file status (new file means no write after created)
+                        -- path = 1, -- 1: Relative path
                     },
                 },
                 lualine_x = {
