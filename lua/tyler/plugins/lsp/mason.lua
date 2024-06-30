@@ -49,7 +49,7 @@ return {
                 "black", -- python formatter
                 "pylint",
                 "eslint_d",
-                -- "google-java-format",
+                "google-java-format",
             },
         })
     end,
