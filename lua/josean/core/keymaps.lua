@@ -32,6 +32,9 @@ keymap.set("n", "<C-u>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" }
 -- Run current Python file
 keymap.set("n", "<leader>pr", ':!python3 "%"<CR>', { desc = "Run current Python file" })
 
+-- cargo run
+keymap.set("n", "<leader>cr", ":!Cargo run<CR>", { desc = "Cargo run" })
+
 -- Run browser sync
 keymap.set(
   "n",

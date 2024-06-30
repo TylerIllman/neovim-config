@@ -149,6 +149,26 @@ return {
           },
         })
       end,
+      -- Handler for Java using jdtls
+      -- ["jdtls"] = function()
+      --   lspconfig.jdtls.setup({
+      --     -- The cmd setting should point to your JDT Language Server startup script
+      --     -- cmd = { "/path/to/jdtls/startup.sh" }, -- Update this path accordingly
+      --     root_dir = lspconfig.util.root_pattern(".git", "mvnw", "gradlew", "pom.xml"),
+      --     settings = {
+      --       java = {
+      --         -- Configure your specific Java settings (e.g., JDK path, formatting preferences)
+      --       },
+      --     },
+      --     on_attach = function(client, bufnr)
+      --       -- Optional: Set up buffer-local keymaps or other buffer-specific configurations here
+      --       local opts = { buffer = bufnr }
+      --       -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      --       -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+      --       -- Additional mappings can be set here
+      --     end,
+      --   })
+      -- end,
     })
   end,
 }
