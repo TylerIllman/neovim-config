@@ -55,6 +55,14 @@ return {
                 theme = my_lualine_theme,
             },
             sections = {
+                lualine_c = {
+                    {
+                        "filename",
+                        file_status = true, -- Displays file status (readonly status, modified status)
+                        newfile_status = false, -- Display new file status (new file means no write after created)
+                        path = 1, -- 1: Relative path
+                    },
+                },
                 lualine_x = {
                     {
                         lazy_status.updates,
