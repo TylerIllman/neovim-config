@@ -37,46 +37,46 @@ keymap.set("n", "<leader>cr", ":!Cargo run<CR>", { desc = "Cargo run" })
 
 -- Run browser sync
 keymap.set(
-  "n",
-  "<leader>bs",
-  ':!browser-sync start --server --files "*.html, *.css, *.js" --no-notify --directory<CR>',
-  { desc = "Start BrowserSync" }
+    "n",
+    "<leader>bs",
+    ':!browser-sync start --server --files "*.html, *.css, *.js" --no-notify --directory<CR>',
+    { desc = "Start BrowserSync" }
 )
 
 -- Delete all instances of word under cursor with check
 vim.keymap.set("n", "<leader>fd", function()
-  local word = vim.fn.expand("<cword>") -- Gets the word under the cursor
-  local pattern = "\\<" .. word .. "\\>\\s*" -- Pattern matches the whole word and any trailing whitespace
-  local command = ":%s/" .. pattern .. "//gc" -- Constructs the substitution command
-  vim.cmd(command) -- Executes the command, now removing the word and any trailing whitespace globally
+    local word = vim.fn.expand("<cword>") -- Gets the word under the cursor
+    local pattern = "\\<" .. word .. "\\>\\s*" -- Pattern matches the whole word and any trailing whitespace
+    local command = ":%s/" .. pattern .. "//gc" -- Constructs the substitution command
+    vim.cmd(command) -- Executes the command, now removing the word and any trailing whitespace globally
 end, { desc = "Delete all instances of the word under the cursor and trailing whitespace" })
 
 -- Replace all instances of word under cursor with user input
 vim.keymap.set("n", "<leader>rw", function()
-  local word = vim.fn.expand("<cword>") -- Gets the word under the cursor
-  local newWord = vim.fn.input("Replace '" .. word .. "' with: ") -- Asks for the replacement word
-  if newWord ~= "" then
-    local pattern = "\\<" .. vim.fn.escape(word, "\\/.*'$^~[]") .. "\\>" -- Escape special characters in word and form the pattern
-    local command = ":%s/" .. pattern .. "/" .. vim.fn.escape(newWord, "/\\&") .. "/gc" -- Constructs the substitution command with confirmations
-    vim.cmd(command) -- Executes the command
-  else
-    print("No replacement word provided.")
-  end
+    local word = vim.fn.expand("<cword>") -- Gets the word under the cursor
+    local newWord = vim.fn.input("Replace '" .. word .. "' with: ") -- Asks for the replacement word
+    if newWord ~= "" then
+        local pattern = "\\<" .. vim.fn.escape(word, "\\/.*'$^~[]") .. "\\>" -- Escape special characters in word and form the pattern
+        local command = ":%s/" .. pattern .. "/" .. vim.fn.escape(newWord, "/\\&") .. "/gc" -- Constructs the substitution command with confirmations
+        vim.cmd(command) -- Executes the command
+    else
+        print("No replacement word provided.")
+    end
 end, { desc = "Replace all instances of the word under the cursor with user input" })
 
 -- Map visual mode yank to keep the cursor at the end of the selection
 vim.keymap.set(
-  "v",
-  "y",
-  "ygv<Esc>`>",
-  { noremap = true, silent = true, desc = "Yank and move cursor to the end of the selection" }
+    "v",
+    "y",
+    "ygv<Esc>`>",
+    { noremap = true, silent = true, desc = "Yank and move cursor to the end of the selection" }
 )
 
 -- Copy whole file and return curor to starting position
 vim.keymap.set("n", "<leader>yaa", function()
-  local save_cursor = vim.fn.getpos(".")
-  vim.cmd("normal! ggVGy")
-  vim.fn.setpos(".", save_cursor)
+    local save_cursor = vim.fn.getpos(".")
+    vim.cmd("normal! ggVGy")
+    vim.fn.setpos(".", save_cursor)
 end, { noremap = true, silent = true, desc = "Copy the whole file and restore cursor position" })
 
 keymap.set("n", "<leader>jr", ":!node %<CR>", { desc = "Run current JS file with Node" })
