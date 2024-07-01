@@ -41,6 +41,9 @@ keymap.set("n", "<leader>pr", ':!python3 "%"<CR>', { desc = "Run current Python 
 -- cargo run
 keymap.set("n", "<leader>cr", ":!Cargo run<CR>", { desc = "Cargo run" })
 
+-- clear '/' seacht
+keymap.set("n", "<leader>cs", "<cmd>:now<CR>", { desc = "Clear '/' search" })
+
 -- Run browser sync
 keymap.set(
     "n",

@@ -1,6 +1,7 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
+local lsp = vim.lsp
 
 opt.relativenumber = true
 opt.number = true
@@ -44,3 +45,8 @@ opt.wrap = true
 -- custom colours for use with lualine filename highlighting
 vim.api.nvim_set_hl(0, "lualineBold", { fg = "#FFDA7B", bg = "#112638", bold = true })
 vim.api.nvim_set_hl(0, "lualineNormal", { fg = "#c3ccdc", bg = "#112638" })
+
+-- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
+lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+})
