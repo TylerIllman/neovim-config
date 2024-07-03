@@ -26,9 +26,6 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- set 'U' to redo
 keymap.set("n", "U", "<C-r>", { desc = "redo changes" })
 
--- Toggle Telescope undo
-keymap.set("n", "<leader>tu", ":Telescope undo<CR>", { desc = "Open Telescope Undo" })
-
 -- Go to next tab with Ctrl+U
 keymap.set("n", "<C-i>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
 
