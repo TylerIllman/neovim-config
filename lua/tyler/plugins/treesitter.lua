@@ -7,23 +7,21 @@ return {
         "HiPhish/nvim-ts-rainbow2",
     },
     config = function()
-        -- import nvim-treesitter plugin
         local treesitter = require("nvim-treesitter.configs")
-        local rainbow = require("ts-rainbow")
 
         -- configure treesitter
         treesitter.setup({ -- enable syntax highlighting
+            -- rainbow = {
+            --     enable = true,
+            --     -- list of languages you want to disable the plugin for
+            --     -- disable = { "tsx" },
+            --     -- Which query to use for finding delimiters
+            --     query = { "rainbow-parens", html = "rainbow-tags", tsx = "rainbow-tags" },
+            --     -- Highlight the entire buffer all at once
+            --     strategy = require("ts-rainbow").strategy.global,
+            -- },
             highlight = {
                 enable = true,
-            },
-            rainbow = {
-                enable = true,
-                -- list of languages you want to disable the plugin for
-                disable = { "jsx", "cpp" },
-                -- Which query to use for finding delimiters
-                query = "rainbow-parens",
-                -- Highlight the entire buffer all at once
-                strategy = require("ts-rainbow").strategy.global,
             },
             indent = { enable = true },
             -- enable autotagging (w/ nvim-ts-autotag plugin)
