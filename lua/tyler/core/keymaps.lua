@@ -79,7 +79,7 @@ vim.keymap.set(
 )
 
 -- Copy whole file and return curor to starting position
-vim.keymap.set("n", "<leader>yaa", function()
+vim.keymap.set("n", "<leader>ya", function()
     local save_cursor = vim.fn.getpos(".")
     vim.cmd("normal! ggVGy")
     vim.fn.setpos(".", save_cursor)
