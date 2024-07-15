@@ -21,7 +21,7 @@ return {
     config = function()
         local cmp = require("cmp")
 
-        local luasnip = require("luasnip")
+        local luasnip = require("luasnip").filetype_extend("typescript", { "javascript" }) -- extend allows js snips to work in ts
 
         local lspkind = require("lspkind")
 
