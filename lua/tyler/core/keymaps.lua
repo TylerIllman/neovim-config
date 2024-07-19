@@ -41,6 +41,24 @@ keymap.set("n", "<leader>cr", ":!Cargo run<CR>", { desc = "Cargo run" })
 -- clear '/' seacht
 keymap.set("n", "<leader>cs", "<cmd>:now<CR>", { desc = "Clear '/' search" })
 
+local function get_line_diagnostics()
+    vim.diagnostic.open_float()
+    vim.schedule(function()
+        vim.diagnostic.open_float()
+        vim.cmd("normal! ggVGy") -- Your existing line command
+
+        -- Close the diagnostic float after opening it twice
+        local float_buf = vim.api.nvim_get_current_buf()
+        local float_win = vim.fn.win_findbuf(float_buf)[1] -- Get the window ID of the current buffer
+        if float_win then
+            vim.api.nvim_win_close(float_win, false)
+        end
+    end)
+end
+
+-- Set keymap to run the function
+vim.keymap.set("n", "<leader>yd", get_line_diagnostics, { desc = "Open diagnostics float twice" })
+
 -- Run browser sync
 keymap.set(
     "n",
