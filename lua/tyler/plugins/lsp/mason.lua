@@ -39,6 +39,7 @@ return {
                 "pyright",
                 "jdtls",
                 "rust_analyzer",
+                "clangd",
             },
         })
 
@@ -51,6 +52,7 @@ return {
                 "pylint",
                 "eslint_d",
                 "google-java-format",
+                "clang-format",
             },
         })
     end,

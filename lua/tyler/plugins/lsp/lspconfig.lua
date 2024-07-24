@@ -158,6 +158,12 @@ return {
                     },
                 })
             end,
+            ["clangd"] = function()
+                lspconfig.clangd.setup({
+                    capabilities = capabilities,
+                    -- Add other specific settings here
+                })
+            end,
         })
     end,
 }
