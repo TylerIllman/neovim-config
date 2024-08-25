@@ -7,10 +7,11 @@ return {
         "HiPhish/nvim-ts-rainbow2",
     },
     config = function()
-        local treesitter = require("nvim-treesitter.configs")
+        -- local treesitter = require("nvim-treesitter.configs")
 
         -- configure treesitter
-        treesitter.setup({ -- enable syntax highlighting
+        -- treesitter.setup({ -- enable syntax highlighting
+        require("nvim-ts-autotag").setup({ -- enable syntax highlighting
             -- rainbow = {
             --     enable = true,
             --     -- list of languages you want to disable the plugin for
@@ -50,6 +51,7 @@ return {
                 "query",
                 "vimdoc",
                 "c",
+                "rust", -- add rust support
             },
 
             sync_install = false,

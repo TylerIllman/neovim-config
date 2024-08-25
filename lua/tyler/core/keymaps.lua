@@ -104,3 +104,5 @@ vim.keymap.set("n", "<leader>ya", function()
 end, { noremap = true, silent = true, desc = "Copy the whole file and restore cursor position" })
 
 keymap.set("n", "<leader>jr", ":!node %<CR>", { desc = "Run current JS file with Node" })
+
+-- keymap.set("n", "<leader>jj", ":!javac '%' && java '%:r'<CR>", { desc = "Compile and run current Java file" })
