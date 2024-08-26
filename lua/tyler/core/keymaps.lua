@@ -106,3 +106,14 @@ end, { noremap = true, silent = true, desc = "Copy the whole file and restore cu
 keymap.set("n", "<leader>jr", ":!node %<CR>", { desc = "Run current JS file with Node" })
 
 -- keymap.set("n", "<leader>jj", ":!javac '%' && java '%:r'<CR>", { desc = "Compile and run current Java file" })
+
+---- Function to toggle diagnostics
+local diagnostics_active = true
+vim.keymap.set("n", "<leader>td", function()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.show()
+    else
+        vim.diagnostic.hide()
+    end
+end, { noremap = true, silent = true, desc = "Toggle Diagnostics" })
