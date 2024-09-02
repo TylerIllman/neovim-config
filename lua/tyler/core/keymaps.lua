@@ -41,6 +41,9 @@ keymap.set("n", "<leader>cr", ":!Cargo run<CR>", { desc = "Cargo run" })
 -- clear '/' seacht
 keymap.set("n", "<leader>cs", "<cmd>:now<CR>", { desc = "Clear '/' search" })
 
+-- select all
+keymap.set("n", "<leader>sa", "ggVG", { desc = "Select all in file" })
+
 local function get_line_diagnostics()
     vim.diagnostic.open_float()
     vim.schedule(function()
