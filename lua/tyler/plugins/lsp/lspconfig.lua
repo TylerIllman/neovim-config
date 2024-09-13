@@ -18,6 +18,22 @@ return {
 
         local keymap = vim.keymap -- for conciseness
 
+        -- -- Function to dynamically detect and set the Python interpreter from the active conda environment
+        -- local function set_conda_python()
+        --     -- Get the conda base environment path
+        --     local conda_base = vim.fn.system("conda info --base"):gsub("\n", "")
+        --
+        --     -- Get the currently active conda environment
+        --     local active_env = vim.fn.system("basename $(conda info --json | jq -r .active_prefix)"):gsub("\n", "")
+        --
+        --     if active_env ~= "" then
+        --         vim.g.python3_host_prog = conda_base .. "/envs/" .. active_env .. "/bin/python"
+        --     end
+        -- end
+        --
+        -- -- Run the function to set the Python path dynamically
+        -- set_conda_python()
+
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
@@ -74,7 +90,6 @@ return {
         -- (not in youtube nvim video)
         local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
         for type, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
@@ -85,6 +100,19 @@ return {
                     capabilities = capabilities,
                 })
             end,
+
+            -- ["pyright"] = function()
+            --     -- Configure pyright to use the dynamically detected Python interpreter
+            --     lspconfig.pyright.setup({
+            --         settings = {
+            --             python = {
+            --                 -- pythonPath = vim.fn.exepath("python3"), -- Use the dynamically detected Python interpreter
+            --                 -- pythonPath = "/opt/homebrew/anaconda3/envs/torch/bin/python",
+            --                 pythonPath = "/opt/homebrew/",
+            --             },
+            --         },
+            --     })
+            -- end,
 
             ["cssls"] = function()
                 lspconfig.cssls.setup({

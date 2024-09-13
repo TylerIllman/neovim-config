@@ -16,7 +16,7 @@ return {
             todo_comments.jump_prev()
         end, { desc = "Previous todo comment" })
 
-        keymap.set("n", "<leader>tl", "<cmd>TodoLocList<CR>", { desc = "Toddle Todo Location List" })
+        keymap.set("n", "<leader>tl", "<cmd>TodoLocList<CR>", { desc = "Toggle Todo Location List" })
 
         todo_comments.setup()
     end,
