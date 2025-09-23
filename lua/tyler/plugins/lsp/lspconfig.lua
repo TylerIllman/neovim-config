@@ -65,11 +65,20 @@ return {
         local capabilities = cmp_nvim_lsp.default_capabilities()
 
         -- Diagnostic signs (fixes your earlier `hl` nil bug)
-        local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-        for t, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. t
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-        end
+        -- Put this once in your LSP setup (e.g. in lspconfig.lua)
+        vim.diagnostic.config({
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = " ",
+                    [vim.diagnostic.severity.WARN] = " ",
+                    [vim.diagnostic.severity.HINT] = "󰠠 ",
+                    [vim.diagnostic.severity.INFO] = " ",
+                },
+            },
+            -- optional extras you might like
+            severity_sort = true,
+            virtual_text = true,
+        })
 
         -- Use Neovim 0.11 API (like Josean) instead of mason_lspconfig.setup_handlers
         -- Default for ALL servers:
