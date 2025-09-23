@@ -186,21 +186,10 @@ return {
                     },
                 })
             end,
-            -- ["clangd"] = function()
-            --     lspconfig.clangd.setup({
-            --         capabilities = capabilities,
-            --         -- Add other specific settings here
-            --     })
-            -- end,
             ["clangd"] = function()
                 lspconfig.clangd.setup({
                     capabilities = capabilities,
-                    cmd = {
-                        "clangd",
-                        -- "--compile-commands-dir=/path/to/compile_commands", -- Adjust this to your project path
-                        "-I/usr/local/opt/open-mpi/include", -- Add the OpenMPI include path
-                    },
-                    -- Add any other specific settings you may need
+                    -- Add other specific settings here
                 })
             end,
         })

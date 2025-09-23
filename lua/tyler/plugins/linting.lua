@@ -4,6 +4,17 @@ return {
     config = function()
         local lint = require("lint")
 
+        local function prefer_local_eslint()
+            local filename = vim.api.nvim_buf_get_name(0)
+            local bin = vim.fs.find(
+                { "node_modules/.bin/eslint_d", "node_modules/.bin/eslint" },
+                { upward = true, path = filename:match("(.*/)") or ".", type = "file", limit = 1 }
+            )[1]
+            return bin or "eslint_d" -- fallback to PATH default
+        end
+
+        lint.linters.eslint_d.cmd = prefer_local_eslint()
+
         lint.linters_by_ft = {
             javascript = { "eslint_d" },
             typescript = { "eslint_d" },
