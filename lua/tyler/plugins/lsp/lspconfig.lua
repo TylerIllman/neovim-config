@@ -54,7 +54,9 @@ return {
                 keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
                 opts.desc = "Show documentation for what is under cursor"
-                keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "K", function()
+                    vim.lsp.buf.hover({ border = "rounded" })
+                end, opts)
 
                 opts.desc = "Restart LSP"
                 keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
@@ -78,7 +80,13 @@ return {
             -- optional extras you might like
             severity_sort = true,
             virtual_text = true,
+            float = { border = "rounded" },
         })
+
+        -- 🔹 Add borders to LSP popups
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+        vim.lsp.handlers["textDocument/signatureHelp"] =
+            vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
         -- Use Neovim 0.11 API (like Josean) instead of mason_lspconfig.setup_handlers
         -- Default for ALL servers:
