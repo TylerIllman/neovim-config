@@ -1,16 +1,13 @@
 return {
     "rmagatti/auto-session",
-    config = function()
-        local auto_session = require("auto-session")
+    lazy = false, -- load on startup so restore/save works immediately
+    version = "*",
 
-        auto_session.setup({
-            auto_restore_enabled = false,
-            auto_session_suppress_dirs = { "~/", "~/Dev/", "~/Downloads", "~/Documents", "~/Desktop/" },
-        })
+    config = function(_, opts)
+        require("auto-session").setup(opts)
 
-        local keymap = vim.keymap
-
-        keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" }) -- restore last workspace session for current directory
-        keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" }) -- save workspace session for current working directory
+        local map = vim.keymap.set
+        map("n", "<leader>wr", "<cmd>AutoSession restore<CR>", { desc = "Session: Restore (cwd)" })
+        map("n", "<leader>ws", "<cmd>AutoSession save<CR>", { desc = "Session: Save (cwd)" })
     end,
 }
