@@ -32,8 +32,36 @@ keymap.set("n", "<C-i>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
 -- Go to previous tab with Ctrl+I
 keymap.set("n", "<C-u>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
 
--- Run current Python file
-keymap.set("n", "<leader>pr", ':!python3 "%"<CR>', { desc = "Run current Python file" })
+-- Run Python through uv when the file belongs to a uv project.
+-- Fall back to a nearby .venv, then the default python3.
+local function python_command(file)
+    local directory = vim.fs.dirname(file)
+    local pyproject = vim.fs.find("pyproject.toml", {
+        upward = true,
+        path = directory,
+        type = "file",
+        limit = 1,
+    })[1]
+
+    if pyproject and vim.fn.executable("uv") == 1 then
+        local project_directory = vim.fs.dirname(pyproject)
+        return "cd "
+            .. vim.fn.shellescape(project_directory)
+            .. " && uv run python "
+            .. vim.fn.shellescape(file)
+    end
+
+    local venv = vim.fs.find(".venv", { upward = true, path = directory, type = "directory", limit = 1 })[1]
+    if venv then
+        return "cd " .. vim.fn.shellescape(directory) .. " && " .. vim.fn.shellescape(venv .. "/bin/python") .. " " .. vim.fn.shellescape(file)
+    end
+    return vim.fn.shellescape(vim.fn.exepath("python3")) .. " " .. vim.fn.shellescape(file)
+end
+
+keymap.set("n", "<leader>pr", function()
+    local file = vim.api.nvim_buf_get_name(0)
+    vim.cmd("!" .. python_command(file))
+end, { desc = "Run current Python file" })
 
 -- cargo run
 keymap.set("n", "<leader>cr", ":!Cargo run<CR>", { desc = "Cargo run" })
